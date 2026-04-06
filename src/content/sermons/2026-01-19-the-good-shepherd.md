@@ -1,12 +1,13 @@
 ---
-title: "The Good Shepherd"
-speaker: "Elder James Liu"
-date: "2026-01-19"
-series: "Living Water Series"
-scripture: "John 10:1-18"
-description: "Jesus calls Himself the Good Shepherd who lays down His life for the sheep. What does that mean for how we trust Him?"
+title: Trust  and Obay
+speaker: Pastor Tan
+date: 2026-03-22
+series: Exodus
+scripture: Exodus 16:1-7, 13-31, 35
 audioUrl: ""
 videoUrl: ""
+description: Jesus calls Himself the Good Shepherd who lays down His life for
+  the sheep. What does that mean for how we trust Him?
 ---
 
 ## Sermon Notes
