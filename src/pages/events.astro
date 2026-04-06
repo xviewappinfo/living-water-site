@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import { getCollection } from 'astro:content';
+
+const allEvents = await getCollection('events');
+const now = new Date();
+
+const upcomingEvents = allEvents
+  .filter(e => new Date(e.data.date) >= now)
+  .sort((a, b) => new Date(a.data.date).getTime() - new Date(b.data.date).getTime());
+
+const pastEvents = allEvents
+  .filter(e => new Date(e.data.date) < now)
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+---
+
+<BaseLayout title="Events">
+  <Hero
+    title="Events"
+    subtitle="Stay connected with what's happening at Living Water."
+    compact={true}
+  />
+
+  <!-- Upcoming Events -->
+  <section class="section bg-cream">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="font-heading text-navy text-3xl md:text-4xl font-bold">Coming Up</h2>
+        <hr class="gold-rule" />
+      </div>
+
+      {upcomingEvents.length > 0 ? (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {upcomingEvents.map(event => {
+            const eventDate = new Date(event.data.date);
+            return (
+              <div class="card">
+                {event.data.featured && (
+                  <span class="inline-block bg-gold/20 text-gold-dark text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded mb-4">Featured</span>
+                )}
+                <h3 class="font-heading text-navy text-xl font-semibold mb-2">{event.data.title}</h3>
+                <div class="text-slate text-sm space-y-1 mb-3">
+                  <p class="font-medium">
+                    {eventDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
+                    {event.data.endDate && (
+                      <span> — {new Date(event.data.endDate).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                    )}
+                  </p>
+                  {event.data.time && <p>{event.data.time}</p>}
+                  {event.data.location && <p>{event.data.location}</p>}
+                </div>
+                {event.data.description && (
+                  <p class="text-slate text-sm leading-relaxed">{event.data.description}</p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      ) : (
+        <div class="text-center text-slate text-lg">
+          <p>No upcoming events right now. Check back soon!</p>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Past Events -->
+  {pastEvents.length > 0 && (
+    <section class="section bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="font-heading text-navy text-3xl md:text-4xl font-bold">Looking Back</h2>
+          <hr class="gold-rule" />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 opacity-75">
+          {pastEvents.map(event => {
+            const eventDate = new Date(event.data.date);
+            return (
+              <div class="card">
+                <h3 class="font-heading text-navy text-xl font-semibold mb-2">{event.data.title}</h3>
+                <div class="text-slate text-sm space-y-1 mb-3">
+                  <p>{eventDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
+                  {event.data.location && <p>{event.data.location}</p>}
+                </div>
+                {event.data.description && (
+                  <p class="text-slate text-sm leading-relaxed">{event.data.description}</p>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+</BaseLayout>

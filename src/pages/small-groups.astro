@@ -1,0 +1,61 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import { getCollection } from 'astro:content';
+
+const allGroups = await getCollection('small-groups');
+
+const typeLabels: Record<string, string> = {
+  'bible-study': 'Bible Study',
+  'fellowship': 'Fellowship',
+  'prayer': 'Prayer',
+  'topical': 'Topical',
+};
+---
+
+<BaseLayout title="Small Groups">
+  <Hero
+    title="Small Groups"
+    subtitle="Find your community. Grow deeper in faith through authentic relationships."
+    compact={true}
+  />
+
+  <section class="section bg-cream">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="text-slate text-lg max-w-2xl mx-auto leading-relaxed">
+          Our small groups meet throughout the week for Bible study, prayer, and fellowship. Whether you're a student or working professional, there's a group for you.
+          <a href="/contact" class="text-accent font-medium hover:text-navy transition-colors">Contact us</a> to find the right fit.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {allGroups.map(group => (
+          <div class="card">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+              {group.data.type && (
+                <span class="inline-block bg-accent-light text-navy text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded">
+                  {typeLabels[group.data.type] || group.data.type}
+                </span>
+              )}
+              {group.data.openToNewMembers && (
+                <span class="inline-block bg-gold/20 text-gold-dark text-xs font-semibold uppercase tracking-wider px-2 py-0.5 rounded">
+                  Open
+                </span>
+              )}
+            </div>
+            <h3 class="font-heading text-navy text-xl font-semibold mb-2">{group.data.title}</h3>
+            <div class="text-slate text-sm space-y-1 mb-3">
+              <p class="font-medium">Led by {group.data.leader}</p>
+              <p>{group.data.day}s at {group.data.time}</p>
+              <p>{group.data.location}</p>
+            </div>
+            {group.data.description && (
+              <p class="text-slate text-sm leading-relaxed">{group.data.description}</p>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
