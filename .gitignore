@@ -1,2 +1,18 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Astro cache
+.astro/
+
 # Local Netlify folder
-.netlify
+.netlify/
+
+# Environment
+.env
+.env.*
+
+# OS
+.DS_Store
