@@ -1,12 +1,13 @@
 ---
-title: "Identity in Christ: Who Am I?"
-speaker: "Pastor David Chen"
-date: "2026-01-26"
-series: "Identity Series"
-scripture: "Ephesians 2:1-10"
-description: "Exploring what it means to find our true identity not in culture, achievement, or appearance — but in Christ."
+title: Is God Actually Here?
+speaker: Pastor Tan
+date: 2026-03-29
+series: Exodus
+scripture: Exodus 17:1-7
 audioUrl: ""
 videoUrl: ""
+description: Exploring what it means to find our true identity not in culture,
+  achievement, or appearance — but in Christ.
 ---
 
 ## Sermon Notes
