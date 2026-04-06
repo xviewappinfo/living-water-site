@@ -1,5 +1,5 @@
 ---
-title: Trust  and Obay
+title: Trust  and Obey
 speaker: Pastor Tan
 date: 2026-03-22
 series: Exodus
