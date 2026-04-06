@@ -26,7 +26,7 @@ const pastEvents = allEvents
   <section class="section bg-cream">
     <div class="container mx-auto px-6">
       <div class="text-center mb-12">
-        <h2 class="font-heading text-navy text-3xl md:text-4xl font-bold">Coming Up</h2>
+        <h2 class="font-heading text-primary text-3xl md:text-4xl font-bold">Coming Up</h2>
         <hr class="gold-rule" />
       </div>
 
@@ -37,9 +37,9 @@ const pastEvents = allEvents
             return (
               <div class="card">
                 {event.data.featured && (
-                  <span class="inline-block bg-gold/20 text-gold-dark text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded mb-4">Featured</span>
+                  <span class="inline-block bg-coral/15 text-coral-dark text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded mb-4">Featured</span>
                 )}
-                <h3 class="font-heading text-navy text-xl font-semibold mb-2">{event.data.title}</h3>
+                <h3 class="font-heading text-primary text-xl font-semibold mb-2">{event.data.title}</h3>
                 <div class="text-slate text-sm space-y-1 mb-3">
                   <p class="font-medium">
                     {eventDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}
@@ -70,7 +70,7 @@ const pastEvents = allEvents
     <section class="section bg-white">
       <div class="container mx-auto px-6">
         <div class="text-center mb-12">
-          <h2 class="font-heading text-navy text-3xl md:text-4xl font-bold">Looking Back</h2>
+          <h2 class="font-heading text-primary text-3xl md:text-4xl font-bold">Looking Back</h2>
           <hr class="gold-rule" />
         </div>
 
@@ -79,7 +79,7 @@ const pastEvents = allEvents
             const eventDate = new Date(event.data.date);
             return (
               <div class="card">
-                <h3 class="font-heading text-navy text-xl font-semibold mb-2">{event.data.title}</h3>
+                <h3 class="font-heading text-primary text-xl font-semibold mb-2">{event.data.title}</h3>
                 <div class="text-slate text-sm space-y-1 mb-3">
                   <p>{eventDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>
                   {event.data.location && <p>{event.data.location}</p>}

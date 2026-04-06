@@ -1,0 +1,167 @@
+backend:
+  name: github
+  repo: xviewappinfo/living-water-site
+  branch: main
+
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  # ── Collection: Sermons ──
+  - name: "sermons"
+    label: "Sermons"
+    folder: "src/content/sermons"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Speaker", name: "speaker", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Series", name: "series", widget: "string", required: false }
+      - { label: "Scripture", name: "scripture", widget: "string", required: false }
+      - { label: "Audio URL", name: "audioUrl", widget: "string", required: false, hint: "Link to MP3 (Google Drive, SoundCloud, etc.)" }
+      - { label: "Video URL", name: "videoUrl", widget: "string", required: false, hint: "Link to YouTube or Vimeo" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Notes", name: "body", widget: "markdown", required: false }
+
+  # ── Collection: Events ──
+  - name: "events"
+    label: "Events"
+    folder: "src/content/events"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "End Date", name: "endDate", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false, required: false }
+      - { label: "Time", name: "time", widget: "string", required: false, hint: "e.g. 6:00 PM - 9:00 PM" }
+      - { label: "Location", name: "location", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Image", name: "image", widget: "image", required: false }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Details", name: "body", widget: "markdown", required: false }
+
+  # ── Collection: Small Groups ──
+  - name: "small-groups"
+    label: "Small Groups"
+    folder: "src/content/small-groups"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Leader", name: "leader", widget: "string" }
+      - label: "Day"
+        name: "day"
+        widget: "select"
+        options: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+      - { label: "Time", name: "time", widget: "string", hint: "e.g. 7:00 PM" }
+      - { label: "Location", name: "location", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Open to New Members", name: "openToNewMembers", widget: "boolean", default: true }
+      - label: "Type"
+        name: "type"
+        widget: "select"
+        required: false
+        options:
+          - { label: "Bible Study", value: "bible-study" }
+          - { label: "Fellowship", value: "fellowship" }
+          - { label: "Prayer", value: "prayer" }
+          - { label: "Topical", value: "topical" }
+      - { label: "Details", name: "body", widget: "markdown", required: false }
+
+  # ── Page: Home ──
+  - name: "home"
+    label: "Home Page"
+    files:
+      - name: "home"
+        label: "Home Page"
+        file: "src/content/pages/home.md"
+        fields:
+          - { label: "Hero Title", name: "heroTitle", widget: "string" }
+          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text" }
+          - { label: "Welcome Heading", name: "welcomeHeading", widget: "string" }
+          - { label: "Welcome Text", name: "welcomeText", widget: "text" }
+          - label: "Welcome Cards"
+            name: "cards"
+            widget: "list"
+            fields:
+              - { label: "Icon (emoji)", name: "icon", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - { label: "Scripture Quote", name: "scriptureQuote", widget: "text" }
+          - { label: "Scripture Reference", name: "scriptureRef", widget: "string" }
+
+  # ── Page: About Us ──
+  - name: "about"
+    label: "About Us Page"
+    files:
+      - name: "about"
+        label: "About Us"
+        file: "src/content/pages/about.md"
+        fields:
+          - { label: "Our Story", name: "body", widget: "markdown", hint: "The 'How We Began' section" }
+          - { label: "Mission Statement", name: "mission", widget: "text" }
+          - { label: "Vision Statement", name: "vision", widget: "text" }
+          - label: "Core Values"
+            name: "values"
+            widget: "list"
+            fields:
+              - { label: "Icon (emoji)", name: "icon", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - label: "Pastoral Team"
+            name: "team"
+            widget: "list"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Bio", name: "bio", widget: "text" }
+              - { label: "Photo", name: "photo", widget: "image", required: false }
+          - { label: "CCCVA-SP Connection Text", name: "cccvaspText", widget: "text" }
+
+  # ── Page: Contact ──
+  - name: "contact"
+    label: "Contact Page"
+    files:
+      - name: "contact"
+        label: "Contact & Visit Us"
+        file: "src/content/pages/contact.md"
+        fields:
+          - label: "Service Times"
+            name: "serviceTimes"
+            widget: "list"
+            fields:
+              - { label: "Label", name: "label", widget: "string", hint: "e.g. Sunday Worship" }
+              - { label: "Time", name: "time", widget: "string", hint: "e.g. 11:00 AM" }
+          - { label: "Location Name", name: "location", widget: "string" }
+          - { label: "Address", name: "address", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "What to Expect", name: "body", widget: "markdown" }
+          - { label: "Google Maps Embed URL", name: "mapEmbedUrl", widget: "string", hint: "Paste the src URL from a Google Maps embed" }
+
+  # ── Page: Youth & Young Adults ──
+  - name: "youth"
+    label: "Youth Page"
+    files:
+      - name: "youth"
+        label: "Youth & Young Adults"
+        file: "src/content/pages/youth.md"
+        fields:
+          - { label: "Overview", name: "body", widget: "markdown", hint: "Introduction text for the youth ministry" }
+          - label: "Programs"
+            name: "programs"
+            widget: "list"
+            fields:
+              - { label: "Icon (emoji)", name: "icon", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - label: "Volunteer Opportunities"
+            name: "volunteerOpps"
+            widget: "list"
+            fields:
+              - { label: "Icon (emoji)", name: "icon", widget: "string" }
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+          - { label: "Parents CTA Text", name: "parentCtaText", widget: "text" }

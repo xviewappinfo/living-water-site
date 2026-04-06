@@ -1,17 +1,25 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+const opt = z.string().optional().transform(v => v || undefined);
+
+const cardSchema = z.object({
+  icon: z.string(),
+  title: z.string(),
+  description: z.string(),
+});
+
 const sermons = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/sermons' }),
   schema: z.object({
     title: z.string(),
     speaker: z.string(),
     date: z.coerce.string(),
-    series: z.string().optional().transform(v => v || undefined),
-    scripture: z.string().optional().transform(v => v || undefined),
-    audioUrl: z.string().optional().transform(v => v || undefined),
-    videoUrl: z.string().optional().transform(v => v || undefined),
-    description: z.string().optional().transform(v => v || undefined),
+    series: opt,
+    scripture: opt,
+    audioUrl: opt,
+    videoUrl: opt,
+    description: opt,
   }),
 });
 
@@ -20,11 +28,11 @@ const events = defineCollection({
   schema: z.object({
     title: z.string(),
     date: z.coerce.string(),
-    endDate: z.string().optional().transform(v => v || undefined),
-    time: z.string().optional().transform(v => v || undefined),
-    location: z.string().optional().transform(v => v || undefined),
-    description: z.string().optional().transform(v => v || undefined),
-    image: z.string().optional().transform(v => v || undefined),
+    endDate: opt,
+    time: opt,
+    location: opt,
+    description: opt,
+    image: opt,
     featured: z.boolean().optional(),
   }),
 });
@@ -37,10 +45,49 @@ const smallGroups = defineCollection({
     day: z.string(),
     time: z.string(),
     location: z.string(),
-    description: z.string().optional().transform(v => v || undefined),
+    description: opt,
     openToNewMembers: z.boolean().default(true),
     type: z.enum(['bible-study', 'fellowship', 'prayer', 'topical']).optional(),
   }),
 });
 
-export const collections = { sermons, events, 'small-groups': smallGroups };
+const pages = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
+  schema: z.object({
+    // Home
+    heroTitle: opt,
+    heroSubtitle: opt,
+    welcomeHeading: opt,
+    welcomeText: opt,
+    scriptureQuote: opt,
+    scriptureRef: opt,
+    // About
+    mission: opt,
+    vision: opt,
+    cccvaspText: opt,
+    // Contact
+    location: opt,
+    address: opt,
+    email: opt,
+    mapEmbedUrl: opt,
+    // Youth
+    parentCtaText: opt,
+    // Shared list fields
+    cards: z.array(cardSchema).optional(),
+    values: z.array(cardSchema).optional(),
+    team: z.array(z.object({
+      name: z.string(),
+      role: z.string(),
+      bio: z.string(),
+      photo: opt,
+    })).optional(),
+    serviceTimes: z.array(z.object({
+      label: z.string(),
+      time: z.string(),
+    })).optional(),
+    programs: z.array(cardSchema).optional(),
+    volunteerOpps: z.array(cardSchema).optional(),
+  }).passthrough(),
+});
+
+export const collections = { sermons, events, 'small-groups': smallGroups, pages };

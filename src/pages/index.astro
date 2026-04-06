@@ -1,7 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
+
+const page = await getEntry('pages', 'home');
+const { heroTitle, heroSubtitle, welcomeHeading, welcomeText, cards, scriptureQuote, scriptureRef } = page!.data;
 
 const allEvents = await getCollection('events');
 const allSermons = await getCollection('sermons');
@@ -19,8 +22,8 @@ const recentSermons = allSermons
 
 <BaseLayout title="Home">
   <Hero
-    title="Come, All Who Are Thirsty"
-    subtitle="Living Water International Ministry — an English-speaking worship community within CCCVA-SP, seeking faith, fellowship, and growth together."
+    title={heroTitle || "Come, All Who Are Thirsty"}
+    subtitle={heroSubtitle}
     showCta={true}
   />
 
@@ -28,36 +31,22 @@ const recentSermons = allSermons
   <section class="section bg-cream">
     <div class="container mx-auto px-6">
       <div class="text-center mb-12">
-        <h2 class="font-heading text-navy text-3xl md:text-4xl font-bold">Welcome to Living Water</h2>
+        <h2 class="font-heading text-primary text-3xl md:text-4xl font-bold">{welcomeHeading}</h2>
         <hr class="gold-rule" />
-        <p class="text-slate max-w-2xl mx-auto text-lg leading-relaxed">
-          Whether you're exploring faith for the first time or deepening your walk with God, there's a place for you here.
-        </p>
+        <p class="text-slate max-w-2xl mx-auto text-lg leading-relaxed">{welcomeText}</p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="card text-center">
-          <div class="text-4xl mb-4">🙏</div>
-          <h3 class="font-heading text-navy text-xl font-semibold mb-2">Worship</h3>
-          <p class="text-slate text-sm leading-relaxed">
-            Join us every Sunday at 11:00 AM for worship, prayer, and teaching rooted in God's Word.
-          </p>
+      {cards && cards.length > 0 && (
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {cards.map(card => (
+            <div class="card text-center">
+              <div class="text-4xl mb-4">{card.icon}</div>
+              <h3 class="font-heading text-primary text-xl font-semibold mb-2">{card.title}</h3>
+              <p class="text-slate text-sm leading-relaxed">{card.description}</p>
+            </div>
+          ))}
         </div>
-        <div class="card text-center">
-          <div class="text-4xl mb-4">🤝</div>
-          <h3 class="font-heading text-navy text-xl font-semibold mb-2">Small Groups</h3>
-          <p class="text-slate text-sm leading-relaxed">
-            Connect with others through Bible studies, fellowship groups, and prayer meetings throughout the week.
-          </p>
-        </div>
-        <div class="card text-center">
-          <div class="text-4xl mb-4">🌊</div>
-          <h3 class="font-heading text-navy text-xl font-semibold mb-2">Community & Service</h3>
-          <p class="text-slate text-sm leading-relaxed">
-            We serve together, grow together, and build authentic relationships that reflect Christ's love.
-          </p>
-        </div>
-      </div>
+      )}
     </div>
   </section>
 
@@ -66,7 +55,7 @@ const recentSermons = allSermons
     <section class="section bg-white">
       <div class="container mx-auto px-6">
         <div class="text-center mb-12">
-          <h2 class="font-heading text-navy text-3xl md:text-4xl font-bold">Upcoming Events</h2>
+          <h2 class="font-heading text-primary text-3xl md:text-4xl font-bold">Upcoming Events</h2>
           <hr class="gold-rule" />
         </div>
 
@@ -76,9 +65,9 @@ const recentSermons = allSermons
             return (
               <div class="card">
                 {event.data.featured && (
-                  <span class="inline-block bg-gold/20 text-gold-dark text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded mb-4">Featured</span>
+                  <span class="inline-block bg-coral/15 text-coral-dark text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded mb-4">Featured</span>
                 )}
-                <h3 class="font-heading text-navy text-xl font-semibold mb-2">{event.data.title}</h3>
+                <h3 class="font-heading text-primary text-xl font-semibold mb-2">{event.data.title}</h3>
                 <div class="text-slate text-sm space-y-1 mb-3">
                   <p>{eventDate.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' })}</p>
                   {event.data.time && <p>{event.data.time}</p>}
@@ -104,7 +93,7 @@ const recentSermons = allSermons
     <section class="section bg-cream">
       <div class="container mx-auto px-6">
         <div class="text-center mb-12">
-          <h2 class="font-heading text-navy text-3xl md:text-4xl font-bold">Recent Sermons</h2>
+          <h2 class="font-heading text-primary text-3xl md:text-4xl font-bold">Recent Sermons</h2>
           <hr class="gold-rule" />
         </div>
 
@@ -114,8 +103,8 @@ const recentSermons = allSermons
               <div class="text-xs text-slate uppercase tracking-wider mb-2">
                 {new Date(sermon.data.date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
               </div>
-              <h3 class="font-heading text-navy text-xl font-semibold mb-1">{sermon.data.title}</h3>
-              <p class="text-accent text-sm font-medium mb-2">{sermon.data.speaker}</p>
+              <h3 class="font-heading text-primary text-xl font-semibold mb-1">{sermon.data.title}</h3>
+              <p class="text-coral text-sm font-medium mb-2">{sermon.data.speaker}</p>
               {sermon.data.scripture && (
                 <p class="text-slate text-sm italic mb-3">{sermon.data.scripture}</p>
               )}
@@ -124,10 +113,10 @@ const recentSermons = allSermons
               )}
               <div class="flex gap-3 mt-4">
                 {sermon.data.audioUrl && (
-                  <a href={sermon.data.audioUrl} class="text-accent text-sm font-medium hover:text-navy transition-colors">Listen</a>
+                  <a href={sermon.data.audioUrl} class="text-coral text-sm font-medium hover:text-primary transition-colors">Listen</a>
                 )}
                 {sermon.data.videoUrl && (
-                  <a href={sermon.data.videoUrl} class="text-accent text-sm font-medium hover:text-navy transition-colors">Watch</a>
+                  <a href={sermon.data.videoUrl} class="text-coral text-sm font-medium hover:text-primary transition-colors">Watch</a>
                 )}
               </div>
             </div>
@@ -142,14 +131,14 @@ const recentSermons = allSermons
   )}
 
   <!-- Scripture CTA -->
-  <section class="bg-navy-dark py-20">
+  <section class="bg-tan py-20">
     <div class="container mx-auto px-6 text-center">
-      <div class="w-16 h-px bg-gold mx-auto mb-8"></div>
-      <blockquote class="font-heading text-cream text-2xl md:text-3xl italic max-w-3xl mx-auto leading-relaxed">
-        "Whoever believes in me, as Scripture has said, rivers of living water will flow from within them."
+      <div class="w-16 h-px bg-coral mx-auto mb-8"></div>
+      <blockquote class="font-heading text-primary-dark text-2xl md:text-3xl italic max-w-3xl mx-auto leading-relaxed">
+        "{scriptureQuote}"
       </blockquote>
-      <p class="text-gold mt-6 font-medium">— John 7:38 (NIV)</p>
-      <div class="w-16 h-px bg-gold mx-auto mt-8"></div>
+      <p class="text-coral mt-6 font-medium">{scriptureRef}</p>
+      <div class="w-16 h-px bg-coral mx-auto mt-8"></div>
     </div>
   </section>
 </BaseLayout>

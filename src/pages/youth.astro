@@ -1,22 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
+import { getEntry, render } from 'astro:content';
 
-const programs = [
-  { icon: '🎵', title: 'Youth Worship Night', desc: 'A dedicated time of praise, worship, and teaching designed for teens and young adults.' },
-  { icon: '📖', title: 'Bible Study', desc: 'Interactive sessions diving deep into Scripture with real-life application and group discussion.' },
-  { icon: '🏕️', title: 'Retreats & Trips', desc: 'Annual retreats and special outings that build lasting friendships and spiritual growth.' },
-  { icon: '🎮', title: 'Fellowship & Fun', desc: 'Game nights, hangouts, and social events where genuine friendships are formed.' },
-  { icon: '🤲', title: 'Service Projects', desc: 'Hands-on opportunities to serve the local community and live out our faith in action.' },
-  { icon: '🧭', title: 'Mentorship', desc: 'One-on-one and group mentoring connecting younger believers with experienced leaders.' },
-];
-
-const volunteerOpps = [
-  { icon: '💻', title: 'Website Team', desc: 'Help maintain and improve our ministry website. Great for anyone interested in web development.' },
-  { icon: '📸', title: 'Content Creators', desc: 'Create social media content, photography, and videos to share our story with the community.' },
-  { icon: '🎸', title: 'Worship Team', desc: 'Use your musical gifts to lead the congregation in praise and worship each Sunday.' },
-  { icon: '👋', title: 'Welcome Team', desc: 'Be the friendly face that greets visitors and helps everyone feel at home.' },
-];
+const page = await getEntry('pages', 'youth');
+const { programs, volunteerOpps, parentCtaText } = page!.data;
+const { Content } = await render(page!);
 ---
 
 <BaseLayout title="Youth & Young Adults">
@@ -30,68 +19,70 @@ const volunteerOpps = [
   <section class="section bg-cream">
     <div class="container mx-auto px-6">
       <div class="max-w-3xl mx-auto text-center">
-        <h2 class="font-heading text-navy text-3xl md:text-4xl font-bold">Growing Together</h2>
+        <h2 class="font-heading text-primary text-3xl md:text-4xl font-bold">Growing Together</h2>
         <hr class="gold-rule" />
-        <p class="text-slate text-lg leading-relaxed">
-          Our youth and young adult ministry exists to help the next generation discover their identity in Christ, build meaningful relationships, and develop as leaders in the church and the world.
-        </p>
+        <div class="text-slate text-lg leading-relaxed">
+          <Content />
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Programs -->
-  <section class="section bg-white">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-12">
-        <h2 class="font-heading text-navy text-3xl md:text-4xl font-bold">Programs</h2>
-        <hr class="gold-rule" />
-      </div>
+  {programs && programs.length > 0 && (
+    <section class="section bg-white">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="font-heading text-primary text-3xl md:text-4xl font-bold">Programs</h2>
+          <hr class="gold-rule" />
+        </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {programs.map(p => (
-          <div class="card text-center">
-            <div class="text-4xl mb-4">{p.icon}</div>
-            <h3 class="font-heading text-navy text-lg font-semibold mb-2">{p.title}</h3>
-            <p class="text-slate text-sm leading-relaxed">{p.desc}</p>
-          </div>
-        ))}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {programs.map(p => (
+            <div class="card text-center">
+              <div class="text-4xl mb-4">{p.icon}</div>
+              <h3 class="font-heading text-primary text-lg font-semibold mb-2">{p.title}</h3>
+              <p class="text-slate text-sm leading-relaxed">{p.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- Volunteer Opportunities -->
-  <section class="section bg-cream">
-    <div class="container mx-auto px-6">
-      <div class="text-center mb-12">
-        <h2 class="font-heading text-navy text-3xl md:text-4xl font-bold">Get Involved</h2>
-        <hr class="gold-rule" />
-        <p class="text-slate text-lg max-w-2xl mx-auto leading-relaxed">
-          There are many ways to serve and use your gifts. Here are some current opportunities:
-        </p>
-      </div>
+  {volunteerOpps && volunteerOpps.length > 0 && (
+    <section class="section bg-cream">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-12">
+          <h2 class="font-heading text-primary text-3xl md:text-4xl font-bold">Get Involved</h2>
+          <hr class="gold-rule" />
+          <p class="text-slate text-lg max-w-2xl mx-auto leading-relaxed">
+            There are many ways to serve and use your gifts. Here are some current opportunities:
+          </p>
+        </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {volunteerOpps.map(v => (
-          <div class="card text-center">
-            <div class="text-3xl mb-3">{v.icon}</div>
-            <h3 class="font-heading text-navy text-lg font-semibold mb-2">{v.title}</h3>
-            <p class="text-slate text-sm leading-relaxed">{v.desc}</p>
-          </div>
-        ))}
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {volunteerOpps.map(v => (
+            <div class="card text-center">
+              <div class="text-3xl mb-3">{v.icon}</div>
+              <h3 class="font-heading text-primary text-lg font-semibold mb-2">{v.title}</h3>
+              <p class="text-slate text-sm leading-relaxed">{v.description}</p>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- Parent CTA -->
-  <section class="bg-navy-dark py-16">
+  <section class="bg-tan py-16">
     <div class="container mx-auto px-6 text-center">
-      <div class="w-16 h-px bg-gold mx-auto mb-8"></div>
-      <h2 class="font-heading text-cream text-2xl md:text-3xl font-bold mb-4">Parents & Guardians</h2>
-      <p class="text-cream/70 max-w-2xl mx-auto leading-relaxed mb-8">
-        We'd love to connect with you about how your teen or young adult can get involved. Our leaders are committed to creating a safe, faith-filled environment for the next generation.
-      </p>
+      <div class="w-16 h-px bg-coral mx-auto mb-8"></div>
+      <h2 class="font-heading text-primary-dark text-2xl md:text-3xl font-bold mb-4">Parents & Guardians</h2>
+      <p class="text-slate max-w-2xl mx-auto leading-relaxed mb-8">{parentCtaText}</p>
       <a href="/contact" class="btn-primary">Get in Touch</a>
-      <div class="w-16 h-px bg-gold mx-auto mt-10"></div>
+      <div class="w-16 h-px bg-coral mx-auto mt-10"></div>
     </div>
   </section>
 </BaseLayout>
