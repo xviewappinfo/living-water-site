@@ -1,7 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
-const opt = z.string().optional().transform(v => v || undefined);
+const opt = z.union([z.string(), z.date().transform(d => d.toISOString().split('T')[0])]).optional().transform(v => v || undefined);
 
 const cardSchema = z.object({
   icon: z.string(),
