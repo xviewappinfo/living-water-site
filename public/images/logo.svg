@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 56" fill="none">
+  <!-- Water drop shape -->
+  <path d="M24 2C24 2 6 22 6 34c0 9.941 8.059 18 18 18s18-8.059 18-18C42 22 24 2 24 2z" fill="#4FA8D6" opacity="0.85"/>
+  <!-- Cross inside the drop -->
+  <rect x="21.5" y="16" width="5" height="26" rx="1.5" fill="white"/>
+  <rect x="14" y="22" width="20" height="5" rx="1.5" fill="white"/>
+</svg>
