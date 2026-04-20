@@ -16,7 +16,7 @@ Get away from the routine and spend a weekend growing closer to God and each oth
 * **Friday Morning: Worship and session 2**
 * **Friday Afternoon: Beach activities**
 * **Friday Evening: Bonfire and testimonies**
-* **Saturday morning:** **Session 3, small group discussion, and lunch**
+* **Saturday morning:** **Session 3, small group discussion**
 
 **Cost:** $150 per person (13y and older); $130 per person (9y-12y)
 
