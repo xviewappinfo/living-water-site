@@ -7,7 +7,7 @@ programs:
       to your child's safety and comfort, allowing you to focus fully on
       worship."
   - icon: 📖🧒
-    title: Children's Bible Study (5-7)
+    title: Stepping Stone (5-7)
     description: After our opening worship, children ages 5–7 are invited to join
       our Children’s Bible Study. We believe in teaching the Word at their
       level! Through engaging stories, crafts, and activities, we help kids
