@@ -4,7 +4,7 @@ serviceTimes:
     time: 10:00 AM
   - label: Sunday School
     time: 11:30 AM
-  - label: Prayer Meeting
+  - label: Weekly Prayer Meeting
     time: Wednesday 9:00 PM
 location: Chinese Christian Church of Virginia — Springfield
 address: 7800 Rolling Rd, Springfield, VA 22153
