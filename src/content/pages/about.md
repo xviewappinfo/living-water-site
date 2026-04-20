@@ -28,8 +28,8 @@ team:
     bio: Pastor Tan has a heart for bridging generations and cultures through the
       gospel. He leads our Sunday worship and oversees the ministry's spiritual
       direction.
-  - name: "Jason "
-    role: Speaker
+  - name: Jason Franoeur
+    role: Guest Speaker
     bio: "Jason brings years of faithful teaching and mentoring. "
 cccvaspText: Living Water is a ministry within the Chinese Christian Church of
   Virginia at Springfield. We are united in mission with the larger church body
