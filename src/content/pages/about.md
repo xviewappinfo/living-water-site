@@ -1,9 +1,12 @@
 ---
 mission: To nurture a Christ-centered, English-speaking community that worships
   God, grows in faith, and serves others with love and purpose.
-vision: To be a thriving, multigenerational ministry where people of all
-  backgrounds encounter God's living water and are transformed to impact the
-  world.
+vision: >
+  To be a thriving, multigenerational ministry where people of all backgrounds
+  encounter God's living water and are transformed to impact the world.
+
+
+  Equipping the Next Generation of Asian Americans For Christ to Make Disciples of All Nations
 values:
   - icon: 📖
     title: Biblical Foundation
