@@ -43,34 +43,6 @@ collections:
       - { label: "Featured", name: "featured", widget: "boolean", default: false }
       - { label: "Details", name: "body", widget: "markdown", required: false }
 
-  # ── Collection: Small Groups ──
-  - name: "small-groups"
-    label: "Small Groups"
-    folder: "src/content/small-groups"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Leader", name: "leader", widget: "string" }
-      - label: "Day"
-        name: "day"
-        widget: "select"
-        options: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
-      - { label: "Time", name: "time", widget: "string", hint: "e.g. 7:00 PM" }
-      - { label: "Location", name: "location", widget: "string" }
-      - { label: "Description", name: "description", widget: "text", required: false }
-      - { label: "Open to New Members", name: "openToNewMembers", widget: "boolean", default: true }
-      - label: "Type"
-        name: "type"
-        widget: "select"
-        required: false
-        options:
-          - { label: "Bible Study", value: "bible-study" }
-          - { label: "Fellowship", value: "fellowship" }
-          - { label: "Prayer", value: "prayer" }
-          - { label: "Topical", value: "topical" }
-      - { label: "Details", name: "body", widget: "markdown", required: false }
-
   # ── Page: Home ──
   - name: "home"
     label: "Home Page"
@@ -143,7 +115,7 @@ collections:
 
   # ── Page: Youth & Young Adults ──
   - name: "youth"
-    label: "Youth Page"
+    label: "Youth and Young Adults"
     files:
       - name: "youth"
         label: "Youth & Young Adults"
