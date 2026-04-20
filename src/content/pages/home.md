@@ -10,10 +10,6 @@ cards:
     title: Worship
     description: Join us every Sunday at 10:00 AM for worship, prayer, and teaching
       rooted in God's Word.
-  - icon: 🤝
-    title: Fellowship Groups
-    description: Connect with others through Bible studies, fellowship groups, and
-      prayer meetings throughout the week.
   - icon: 🌊
     title: Community & Service
     description: We serve together, grow together, and build authentic relationships

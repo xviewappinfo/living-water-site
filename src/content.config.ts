@@ -37,20 +37,6 @@ const events = defineCollection({
   }),
 });
 
-const smallGroups = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/small-groups' }),
-  schema: z.object({
-    title: z.string(),
-    leader: z.string(),
-    day: z.string(),
-    time: z.string(),
-    location: z.string(),
-    description: opt,
-    openToNewMembers: z.boolean().default(true),
-    type: z.enum(['bible-study', 'fellowship', 'prayer', 'topical']).optional(),
-  }),
-});
-
 const pages = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
   schema: z.object({
@@ -90,4 +76,4 @@ const pages = defineCollection({
   }).passthrough(),
 });
 
-export const collections = { sermons, events, 'small-groups': smallGroups, pages };
+export const collections = { sermons, events, pages };
