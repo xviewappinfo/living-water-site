@@ -1,21 +1,19 @@
 ---
 programs:
-  - icon: 🎵
-    title: Youth Worship Night
-    description: A dedicated time of praise, worship, and teaching designed for
-      teens and young adults.
   - icon: 📖
-    title: Bible Study
+    title: "Young Adult Bible Study "
     description: Interactive sessions diving deep into Scripture with real-life
       application and group discussion.
-  - icon: 🏕️
-    title: Retreats & Trips
-    description: Annual retreats and special outings that build lasting friendships
-      and spiritual growth.
-  - icon: 🎮
-    title: Fellowship & Fun
-    description: Game nights, hangouts, and social events where genuine friendships
-      are formed.
+  - icon: 📖
+    title: Teen Youth Bible Study (13-18)
+    description: Interactive sessions diving deep into Scripture with real-life
+      application and group discussion.
+  - icon: ✝️
+    title: Children' s Sunday School (5-12)
+    description: The learning continues! Join us immediately following the sermon
+      for our Children’s Sunday School. They will dive deeper into the week’s
+      lesson through hands-on learning and fellowship, building a foundation of
+      faith that lasts a lifetime.
   - icon: 📖🧒
     title: Children's Bible Study
     description: After our opening worship, children ages 5–7 are invited to join
@@ -24,7 +22,7 @@ programs:
       discover the big truths of the Bible while the adults hear the morning
       message.
   - icon: 👶 / 🧒
-    title: "Nursery "
+    title: Nursery （0-4）
     description: Childcare is available for infants and toddlers (up to age 4)
       during our Sunday services. Our nursery is staffed by volunteers committed
       to your child's safety and comfort, allowing you to focus fully on
